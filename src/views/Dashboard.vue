@@ -48,6 +48,11 @@
       </div>
       <p v-else class="no-booking">No {{ activeTab }} bookings found.</p>
     </transition>
+
+    <!-- Rooms Loading Placeholder -->
+    <div class="room-grid" v-if="isLoading">
+      <RoomCardSkeleton v-for="n in 9" :key="n" />
+    </div>
   </div>
 </template>
 
@@ -56,21 +61,27 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
+import RoomCardSkeleton from "../components/RoomCardSkeleton.vue";
 
 const bookings = ref([]);
 const activeTab = ref("upcoming");
 const route = useRoute();
 const now = new Date();
+const isLoading = ref(true);
 
 onMounted(() => {
-  const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
+  isLoading.value = true;
+  setTimeout(() => {
+    const stored = JSON.parse(localStorage.getItem("bookings") || "[]");
+    bookings.value = stored.map((b) => ({
+      ...b,
+      image:
+        b.image ||
+        `https://source.unsplash.com/400x250/?hotel,${b.name || "room"}`,
+    }));
 
-  bookings.value = stored.map((b) => ({
-    ...b,
-    image:
-      b.image ||
-      `https://source.unsplash.com/400x250/?hotel,${b.name || "room"}`,
-  }));
+    isLoading.value = false;
+  }, 1000);
 
   const tabFromQuery = route.query.tab;
   if (tabFromQuery === "past" || tabFromQuery === "upcoming") {
@@ -126,14 +137,22 @@ p {
 h2 {
   font-family: system-ui;
 }
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  transition: opacity 0.4s ease;
+}
+
 .dashboard {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 40px auto;
   padding-bottom: 20px;
 }
 .title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #333;
   font-size: 24px;
 }
@@ -220,6 +239,9 @@ h2 {
 
 @media (max-width: 768px) {
   .booking-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+  .room-grid {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
 }

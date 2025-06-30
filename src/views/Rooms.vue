@@ -12,17 +12,17 @@
       ]"
     />
 
-    <!-- Rooms Loading Placeholder -->
-    <div v-if="isLoading" class="room-grid">
-      <RoomCardSkeleton v-for="n in 8" :key="n" />
-    </div>
-
     <RoomBookingModal
       v-if="showModal"
       :room="selectedRoom"
       @close="showModal = false"
       @confirm="handleModalConfirm"
     />
+
+    <!-- Rooms Loading Placeholder -->
+    <div class="room-grid" v-if="isLoading">
+      <RoomCardSkeleton v-for="n in 9" :key="n" />
+    </div>
 
     <div
       class="room-grid"
@@ -77,6 +77,7 @@ import { generateMockRooms } from "../utils/generateRooms";
 import Pagination from "../components/Pagination.vue";
 import SortDropdown from "../components/SortDropdown.vue";
 import RoomBookingModal from "../components/RoomBookingModal.vue";
+import RoomCardSkeleton from "../components/RoomCardSkeleton.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -98,6 +99,7 @@ const selectedRoom = ref(null);
 
 //  Load Mock Rooms
 onMounted(() => {
+  isLoading.value = true;
   setTimeout(() => {
     allRooms.value = generateMockRooms(60);
     isLoading.value = false;

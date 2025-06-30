@@ -1,7 +1,7 @@
 <template>
   <div class="room-detail fade-in">
     <div v-if="room" class="room-wrapper">
-      <div class="image-wrapper" v-if="!room.image">
+      <div class="image-wrapper" v-if="loading">
         <div class="skeleton skeleton-img"></div>
       </div>
 
@@ -51,20 +51,22 @@ const searchData = JSON.parse(localStorage.getItem("searchData") || "{}");
 const checkIn = ref(route.query.checkIn || searchData.checkIn || "");
 const checkOut = ref(route.query.checkOut || searchData.checkOut || "");
 const guests = ref(route.query.guests || searchData.guests || "");
-
-console.log("CheckIn:", checkIn.value);
-console.log("CheckOut:", checkOut.value);
+const loading = ref(true);
 
 onMounted(() => {
-  const id = parseInt(route.params.id);
-  room.value = {
-    id,
-    name: `Room Type ${id}`,
-    description: `Beautiful modern Room ${id} with all the amenities for a comfortable stay. Located in a prime area with great view.`,
-    guests: (id % 5) + 1,
-    price: 2500 + id * 75,
-    image: `https://picsum.photos/seed/room-${id}/800/400`,
-  };
+  setTimeout(() => {
+    loading.value = true;
+    const id = parseInt(route.params.id);
+    room.value = {
+      id,
+      name: `Room Type ${id}`,
+      description: `Beautiful modern Room ${id} with all the amenities for a comfortable stay. Located in a prime area with great view.`,
+      guests: (id % 5) + 1,
+      price: 2500 + id * 75,
+      image: `https://picsum.photos/seed/room-${id}/800/400`,
+    };
+    loading.value = false;
+  }, 1000);
 });
 
 const formatDate = (date) => {
@@ -120,7 +122,7 @@ function redirectToConfirmation() {
 </script>
 <style scoped>
 .room-detail {
-  max-width: 800px;
+  max-width: 960px;
   margin: 40px auto;
   display: flex;
   flex-direction: column;

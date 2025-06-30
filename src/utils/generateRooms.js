@@ -1,28 +1,15 @@
-export function generateMockRooms(count = 50) {
-  const roomTypes = [
-    "Deluxe",
-    "Executive",
-    "Family",
-    "Luxury",
-    "Standard",
-    "Economy",
-    "Superior",
-    "Suite",
-  ];
+export function generateMockRooms(count = 20) {
+  const types = ["Deluxe", "Suite", "Standard", "Executive"];
   const rooms = [];
 
   for (let i = 1; i <= count; i++) {
-    const type = roomTypes[i % roomTypes.length];
-    const capacity = Math.floor(Math.random() * 4) + 1; // 1 to 4 guests
-    const price = 100 + capacity * 25 + Math.floor(Math.random() * 50); // dynamic pricing
-
     rooms.push({
       id: i,
-      name: `${type} Room ${i}`,
-      capacity,
-      price,
-      image: `https://picsum.photos/seed/room${i}/400/250`,
-      description: `A comfortable ${type.toLowerCase()} room for up to ${capacity} guest(s).`,
+      name: `${types[i % types.length]} Room ${i}`,
+      description: `Comfortable ${types[i % types.length]} Room.`,
+      guests: Math.floor(Math.random() * 5) + 1,
+      price: 2000 + i * 75,
+      image: `https://picsum.photos/seed/room-${i}/600/400`,
     });
   }
 

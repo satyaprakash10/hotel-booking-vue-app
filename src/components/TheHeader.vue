@@ -36,7 +36,7 @@
           <div class="drawer-header" style="margin-top: 10px">
             <router-link
               to="/contact"
-              style="text-decoration: none; cursor: pointer"
+              style="text-decoration: none; cursor: pointer; color: black"
             >
               <span class="user-icon-class">
                 <svg
@@ -45,7 +45,12 @@
                   stroke-width="1.5"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  style="color: #333; width: 25px; height: 25px"
+                  style="
+                    color: black;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 3px;
+                  "
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
@@ -252,7 +257,7 @@ const filteredLinks = computed(() => {
 }
 .auth-btn {
   padding: 6px 12px;
-  background: black;
+  background: rgb(43, 43, 43);
   color: white;
   border: none;
   border-radius: 4px;
@@ -289,6 +294,7 @@ const filteredLinks = computed(() => {
 .user-name-class {
   display: flex;
   align-items: baseline;
+  border-bottom: 1px solid lightgray;
   justify-content: space-between;
 }
 .user-icon-class {
@@ -302,7 +308,7 @@ const filteredLinks = computed(() => {
   width: 250px;
   height: 100vh;
   z-index: 100;
-  background: #fff;
+  background: #efecec;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -339,6 +345,7 @@ const filteredLinks = computed(() => {
   align-self: flex-end;
   background: none;
   border: none;
+  color: black;
   cursor: pointer;
   margin-bottom: 20px;
 }

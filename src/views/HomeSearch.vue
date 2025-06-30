@@ -74,6 +74,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 import SelectInput from "../components/SelectInput.vue";
 import { format } from "date-fns";
+import { toast } from "vue3-toastify";
 
 const bannerImages = [
   "/img/banner-img-1.jpg",
@@ -173,7 +174,7 @@ h3 {
 /* Search Form Layout */
 .search-form {
   width: 100%;
-  max-width: 1000px;
+  max-width: 960px;
   padding: 1rem;
   box-sizing: border-box;
 }
@@ -184,7 +185,8 @@ h3 {
   align-items: stretch;
   gap: 1rem;
   flex-wrap: wrap;
-  background-color: #f8f8f8;
+  box-shadow: 0 20px 20px rgba(68, 66, 66, 0.08);
+  background-color: #efecec;
   padding: 1rem;
   border-radius: 6px;
 }

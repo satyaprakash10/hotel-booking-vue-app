@@ -122,7 +122,7 @@ h2 {
   justify-content: space-evenly;
 }
 .confirmation-container {
-  max-width: 800px;
+  max-width: 960px;
   margin: 40px auto;
   padding: 20px;
 }

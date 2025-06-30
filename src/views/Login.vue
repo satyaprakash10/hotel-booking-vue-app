@@ -120,6 +120,7 @@ async function handleLogin() {
 h2 {
   margin-bottom: 20px;
   color: #333;
+  font-family: system-ui;
   text-align: center;
 }
 

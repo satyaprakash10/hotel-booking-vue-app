@@ -1,8 +1,8 @@
-# Vue 3 + Vite
+## Hotel Booking - (Vue 3 + Vite)
 
 ### Project Live server demo: https://hotel-booking-vue.netlify.app/
 
-## Project Summary: An intuitive and user-friendly online hotel booking platform that facilitates seamless room reservations with user authentication. The platform also provides a comprehensive dashboard, enabling users to monitor and manage their reservations effectively.
+### Project Summary: An intuitive and user-friendly online hotel booking platform that facilitates seamless room reservations with user authentication. The platform also provides a comprehensive dashboard, enabling users to monitor and manage their reservations effectively.
 
 
 ### Steps & Guide:
